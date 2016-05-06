@@ -20,8 +20,18 @@
         <%= link_to "Checklist", root_path, class: "navbar-brand" %>
       </div>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav ">
+          <% if user_signed_in? %>
+            <li><%= link_to "Add Task", new_item_path %></li>
+          <% end %>
+        </ul>
         <ul class="nav navbar-nav pull-right">
-          <li><%= link_to "Add Task", new_item_path %></li>
+          <% if user_signed_in? %>
+            <li><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
+          <% else %>
+            <li><%= link_to "Log In", user_session_path %></li>
+            <li><%= link_to "Sign Up", new_user_registration_path %></li>
+          <% end %>
         </ul>
       </div>
 
@@ -29,6 +39,13 @@
   </nav>
 
 <div class="container">
+  <% if notice %>
+    <p class="notice alert alert-success" role="alert"><%= notice %></p>
+  <% end %>
+  <% if alert %>
+    <p class="alert alert alert-danger" role="alert"><%= alert %></p>
+  <% end %>
+
   <%= yield %>
 </div>
 
