@@ -1,0 +1,10 @@
+<h1>CheckList</h1>
+
+<% if @items.count == 0 %>
+  <span>No Item</span>
+<% else %>
+  <% @items.each do |item| %>
+  <h4><%= link_to item.title, item_path(item) %></h4>
+  <% end %>
+
+<% end %>
