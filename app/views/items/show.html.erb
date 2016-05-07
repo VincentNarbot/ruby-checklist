@@ -2,6 +2,9 @@
 <p>
   <%= @item.description %>
 </p>
+<p>
+  Completed <%= time_ago_in_words(@item.completed_at) %> ago
+</p>
 
 <%= link_to '<i class="fa fa-angle-left"></i> Back'.html_safe, root_path %>
 <%= link_to '<i class="fa fa-pencil"></i> Edit'.html_safe, edit_item_path(@item) %>
